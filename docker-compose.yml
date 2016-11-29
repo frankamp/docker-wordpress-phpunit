@@ -1,0 +1,13 @@
+wordpress-phpunit:
+  build: .
+  links:
+    - db:mysql
+  ports:
+    - 8081:80
+  command: phpunit
+db:
+  image: mariadb
+  environment:
+    MYSQL_ROOT_PASSWORD: example
+  volumes:
+    - ./basicdata/:/docker-entrypoint-initdb.d/
