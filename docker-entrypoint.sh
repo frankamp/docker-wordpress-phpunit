@@ -141,7 +141,7 @@ EOPHP
 
 	if [ "$WORDPRESS_DEBUG" ]; then
 		set_config 'WP_DEBUG' 1 boolean
-		set_config 'WP_DEBUG_LOG' 1 boolean
+		sed -i "/define('WP_DEBUG', true);/a define('WP_DEBUG_LOG', true);" wp-config.php
 	fi
 
 	TERM=dumb php -- "$WORDPRESS_DB_HOST" "$WORDPRESS_DB_USER" "$WORDPRESS_DB_PASSWORD" "$WORDPRESS_DB_NAME" <<'EOPHP'
